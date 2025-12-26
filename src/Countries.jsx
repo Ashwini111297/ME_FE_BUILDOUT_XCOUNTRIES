@@ -18,7 +18,7 @@ const Card = ({ flag, name }) => {
     >
       <img
         src={flag}
-        alt={`Flag of ${name}`}
+        alt={`${name} flag`}
         style={{
           height: "75px",
           width: "100px",
@@ -57,7 +57,7 @@ export default function Countries() {
     >
       {countries.map((country) => (
         <Card
-          key={country.abbr}
+          key={country.name}
           flag={country.flag}
           name={country.name}
         />
