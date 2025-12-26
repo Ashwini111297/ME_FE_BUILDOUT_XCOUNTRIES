@@ -35,24 +35,16 @@ export default function Countries() {
   const [countries, setCountries] = useState([]);
 
   useEffect(() => {
-  const fetchCountries = async () => {
-    try {
-      const response = await fetch(API);
+    fetch(API)
+      .then((response) => response.json())
+      .then((data) => {
+        setCountries(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data: ", error);
+      });
+  }, []);
 
-      // optional but safe
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-
-      const data = await response.json();
-      setCountries(data);
-    } catch (error) {
-      console.error("Error fetching data: ",error);
-    }
-  };
-
-  fetchCountries();
-}, []);
 
 
   return (
